@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Email</title>
+   </head>
+   <body style="padding:0px; margin:0px; box-sizing: border-box; font-family:arial; background-color:#ffffff">
+      #if($messageInfo.hippaConfig == true)
+      <table>
+         <tr>
+            <td>
+               <h4>HIPAA Compliant Message</h4>
+               <p style="padding:0px;"><a href="$messageInfo.cwa_message_path" style="padding:0px;" target="_blank">Click here</a> to review your message in our secure online portal</p>
+            </td>
+         </tr>
+      </table>
+      #else
+      <table cellpadding="0" cellspacing="0" border="0" width="625px">
+         <tr>
+            <td style="vertical-align:top;" valign="top">
+               <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                     <td style="width:420px; border:1px solid #cbcfd1; border-radius:6px 0px 0px 6px; vertical-align: top;" valign="top">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                           <tr>
+                              <td style="padding:20px 30px; border-bottom:1px solid #cbcfd1;">
+                                 <p style="margin:0px; font-size: 16px; color: #279ed4; text-transform: capitalize; font-weight: bold; padding: 0px 0px 8px; display: block; font-family:arial;">$messageInfo.accountName</p>
+                                 #if($messageInfo.callerid == 'undefined' || $messageInfo.callerid == '')
+                                    #if($messageInfo.interactionType == 'repeat')
+                                       <p style="margin:0px; padding:0px; color:#747c83; font-size:13px; margin:0px; line-height:17px; font-family:arial;">Repeat to $messageInfo.accountNumber</p>
+                                    #elseif($messageInfo.interactionType == 'chat' || $messageInfo.interactionType == 'lschat')
+                                       <p style="margin:0px; padding:0px; color:#747c83; font-size:13px; margin:0px; line-height:17px; font-family:arial;">Chat to $messageInfo.accountNumber</p>
+                                    #else
+                                       <p style="margin:0px; padding:0px; color:#747c83; font-size:13px; margin:0px; line-height:17px; font-family:arial;">Call from $messageInfo.callerid to $messageInfo.accountNumber</p>
+                                    #end
+                                 #else
+                                    #if($messageInfo.interactionType == 'chat' || $messageInfo.interactionType == 'lschat')
+                                       <p style="margin:0px; padding:0px; color:#747c83; font-size:13px; margin:0px; line-height:17px; font-family:arial;">Chat from $messageInfo.callerid to $messageInfo.accountNumber</p>
+                                    #else
+                                       <p style="margin:0px; padding:0px; color:#747c83; font-size:13px; margin:0px; line-height:17px; font-family:arial;">Call from $messageInfo.callerid to $messageInfo.accountNumber</p>
+                                    #end
+                                 #end
+                              </td>
+                           </tr>
+                           <tr>
+                              <td align="center" style="padding:184px 50px 272px;background-image:url(https://storage.googleapis.com/branddesignmanager/Mailtemplates_Images/verify-signup/message-overlay.jpg);">
+                                 <p style="font-family:Arial,Helvetica; line-height: 20px; color: #455c64; font-weight: 600; font-size: 12px; letter-spacing: normal; text-align: center; margin: 0 0 30px 0;">Please verify your email address below to activate your account and start receiving messages.</p>
+                                 <a href="$invitepeers" target="_blank" style=" font-family:Arial,Helvetica;font-weight: 400;font-size: 14px;color: #fff;text-decoration: none;background-color: #f56956;border-radius: 4px;padding: 7px 20px;cursor: pointer; margin: 0;">Verify</a>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="padding: 20px 30px; border-top: 1px solid #cbcfd1; vertical-align:top;" valign="top">
+                                 <table cellspacing="0" cellpading="0" border="0" width="100%">
+                                    <tr>
+                                       <td style="width:56px;">
+                                          <table cellpading="0" cellspacing="0" border="0" width="100%">
+                                                #if($brandName == 'Voicecurve')
+                                                <tr>
+                                                      <td style="padding:0px;">
+                                                            <a target="_blank" style="padding:0px" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/voicecurve.jpg&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&actualHistoryId=$historyId&feedbackType=positive&uniquePin=$messageInfo.uniquePin"><img src="https://storage.googleapis.com/images.sb.a-cti.com/images/smile.png"></a>
+                                                      </td>
+                                                      <td>
+                                                            <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&actualHistoryId=$historyId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/voicecurve.jpg&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&feedbackType=negative&uniquePin=$messageInfo.uniquePin"><img  src="https://storage.googleapis.com/images.sb.a-cti.com/images/sad.png"></a>
+                                                      </td>
+                                                </tr>
+                                                #elseif($brandName == 'LexReception')
+                                                <tr>
+                                                    <td style="padding:0px;">
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/lex_logo_footer.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&actualHistoryId=$historyId&feedbackType=positive&uniquePin=$messageInfo.uniquePin"><img src="https://storage.googleapis.com/images.sb.a-cti.com/images/smile.png"></a>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&actualHistoryId=$historyId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/lex_logo_footer.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&feedbackType=negative&uniquePin=$messageInfo.uniquePin"><img  src="https://storage.googleapis.com/images.sb.a-cti.com/images/sad.png"></a>
+                                                    </td>
+                                                </tr>
+                                                #elseif($brandName == 'Answer Force')
+                                                <tr>
+                                                    <td style="padding:0px;">
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/ansf_logo_footer.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&actualHistoryId=$historyId&feedbackType=positive&uniquePin=$messageInfo.uniquePin"><img src="https://storage.googleapis.com/images.sb.a-cti.com/images/smile.png"></a>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&actualHistoryId=$historyId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/ansf_logo_footer.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&feedbackType=negative&uniquePin=$messageInfo.uniquePin"><img  src="https://storage.googleapis.com/images.sb.a-cti.com/images/sad.png"></a>
+                                                    </td>
+                                                </tr>
+                                                #elseif($brandName == 'Synclio')
+                                                <tr>
+                                                    <td style="padding:0px;">
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/synclio_logo.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&actualHistoryId=$historyId&feedbackType=positive&uniquePin=$messageInfo.uniquePin"><img src="https://storage.googleapis.com/images.sb.a-cti.com/images/smile.png"></a>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&actualHistoryId=$historyId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/synclio_logo.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&feedbackType=negative&uniquePin=$messageInfo.uniquePin"><img  src="https://storage.googleapis.com/images.sb.a-cti.com/images/sad.png"></a>
+                                                    </td>
+                                                </tr>
+                                                #elseif($brandName == 'HelloSells')
+                                                <tr>
+                                                    <td style="padding:0px;">
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/helloSells_logo_temp.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&actualHistoryId=$historyId&feedbackType=positive&uniquePin=$messageInfo.uniquePin"><img src="https://storage.googleapis.com/images.sb.a-cti.com/images/smile.png"></a>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&actualHistoryId=$historyId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/helloSells_logo_temp.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&feedbackType=negative&uniquePin=$messageInfo.uniquePin"><img  src="https://storage.googleapis.com/images.sb.a-cti.com/images/sad.png"></a>
+                                                    </td>
+                                                </tr>
+                                                #elseif($brandName == 'SetMore')
+                                                <tr>
+                                                    <td style="padding:0px;">
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/SB5/images/setmore.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&actualHistoryId=$historyId&feedbackType=positive&uniquePin=$messageInfo.uniquePin"><img src="https://storage.googleapis.com/images.sb.a-cti.com/images/smile.png"></a>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&actualHistoryId=$historyId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/SB5/images/setmore.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&feedbackType=negative&uniquePin=$messageInfo.uniquePin"><img  src="https://storage.googleapis.com/images.sb.a-cti.com/images/sad.png"></a>
+                                                    </td>
+                                                </tr>
+                                                #elseif($brandName == 'AnswerForce UK')
+                                                <tr>
+                                                    <td style="padding:0px;">
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/ansf_logo_footer.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&actualHistoryId=$historyId&feedbackType=positive&uniquePin=$messageInfo.uniquePin"><img src="https://storage.googleapis.com/images.sb.a-cti.com/images/smile.png"></a>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&actualHistoryId=$historyId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/ansf_logo_footer.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&feedbackType=negative&uniquePin=$messageInfo.uniquePin"><img  src="https://storage.googleapis.com/images.sb.a-cti.com/images/sad.png"></a>
+                                                    </td>
+                                                </tr>
+                                                #elseif($brandName == 'FranForce')
+                                                <tr>
+                                                    <td style="padding:0px;">
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/fnfc_logo_footer.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&actualHistoryId=$historyId&feedbackType=positive&uniquePin=$messageInfo.uniquePin"><img src="https://storage.googleapis.com/images.sb.a-cti.com/images/smile.png"></a>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&actualHistoryId=$historyId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/fnfc_logo_footer.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&feedbackType=negative&uniquePin=$messageInfo.uniquePin"><img  src="https://storage.googleapis.com/images.sb.a-cti.com/images/sad.png"></a>
+                                                    </td>
+                                                </tr>
+                                                #else
+                                                <tr>
+                                                    <td style="padding:0px;">
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/logo_temp.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&actualHistoryId=$historyId&feedbackType=positive&uniquePin=$messageInfo.uniquePin"><img src="https://storage.googleapis.com/images.sb.a-cti.com/images/smile.png"></a>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank" style="padding:0px;" href="$messageInfo.sbURL/views/feedback.html?reportingAccount=$feedbackAccountNumber&connectionId=$connectionId&userActionTrackerId=$userActionTrackerId&actualHistoryId=$historyId&operatorInitials=$feedbackAgentEmail&accName=$accName&brandLogo=https://storage.googleapis.com/images.sb.a-cti.com/images/logo_temp.png&customerServiceNumber=$messageInfo.customerServiceNumber&brandName=$messageInfo.encodedBrandName&feedbackType=negative&uniquePin=$messageInfo.uniquePin"><img  src="https://storage.googleapis.com/images.sb.a-cti.com/images/sad.png"></a>
+                                                    </td>
+                                                </tr>
+                                                #end
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <p style="padding: 0px 0px 0px 10px; font-size: 13px; margin:0px; padding: 0px; text-align: left; color: #8c9095; font-family:arial;">Did we deliver happiness?</p>
+                                        </td>   
+                                    </tr>
+                                 </table>
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                     <td style="background-color:#eff3f6; border-top:1px solid #cbcfd1; border-bottom:1px solid #cbcfd1; border-right:1px solid #cbcfd1; border-radius:0px 6px 6px 0px; vertical-align: top; padding:20px; width:165px; vertical-align: top;" valign="top">
+                        <table cellspacing="0" cellpading="0" border="0" width="100%" valign="top">
+                        #if($messageInfo.phoneNumber != "" || (($messageInfo.callerid && $messageInfo.callerid !="") && ( !($messageInfo.interactionType == 'chat' || $messageInfo.interactionType == 'lschat'))))
+                           <tr>
+                              <td>
+                                 <table cellspacing="0" border="0" width="100%" valign="top">
+                                    <tr>
+                                       <td colspan="2">
+                                       #if($messageInfo.locationName != "")
+                                          <a target="_blank" href="$messageInfo.locationURL" style="text-decoration:none; display:block; padding:0px;">
+                                             <img src="https://storage.googleapis.com/images.sb.a-cti.com/SB5/images/location-found.png" style="padding:0px; width:100%; height:auto;">
+                                          </a>
+                                       #else
+                                          <img src="https://storage.googleapis.com/images.sb.a-cti.com/SB5/images/no-location-map.png" style="padding:0px; width:100%;  height:auto;">
+                                       #end
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td style="width: 11px;" valign="top">
+                                          #if($messageInfo.locationName != "")
+                                             <img src="https://storage.googleapis.com/images.sb.a-cti.com/SB5/images/location-pointer.png">
+                                          #else
+                                             <img src="https://storage.googleapis.com/images.sb.a-cti.com/SB5/images/no-location.png" style="margin:0px 0px -1px 0px;">
+                                          #end
+                                       </td>
+                                       #if($messageInfo.locationName != "")
+                                          <td valign="top" style="font-size: 12px;font-family:arial;padding:1px 0px 0px 0px;margin: 0px;font-weight: 500;">
+                                             <a target="_blank" href="$messageInfo.locationURL" style="text-decoration:none; margin:0px; padding:0px;">
+                                                $messageInfo.locationName
+                                             </a>
+                                          </td>
+                                          #else
+                                             <td valign="top" style="color:#747c83;font-size: 12px;font-family:arial;padding: 0px;margin: 0px;font-weight: 500;">No Location Found!</td>
+                                          #end
+                                       </tr>
+                                    </table>
+                                 </td>
+                              </tr>
+                           #end
+                           <tr>
+                              <td style="padding:30px 0px 0px;">
+                                 <table cellspacing="0" cellpading="0" border="0" width="100%">
+                                    #if( $messageInfo.interactionType != 'chat' )
+                                    <tr>
+                                       <td style="padding:0px 0px 10px;">
+                                          <p style="font-size:13px; margin:0px; padding:0px; font-family:arial;">Caller Details</p>
+                                       </td>
+                                    </tr>
+                                    #if($messageInfo.clientContactID != "")
+                                    <tr>
+                                       <td style="padding:0px;">
+                                          <p style="margin:0px; padding:0px;"><a href="$messageInfo.cwaPath/web/contacts/$messageInfo.clientContactID" style="font-size: 13px;text-decoration: none; color: #279ed4; font-family:arial; padding:0px;">$messageInfo.accountName</a></p>
+                                       </td>
+                                    </tr>
+                                    #else $messageInfo.accountName #end
+                                    <tr>
+                                       <td style="padding:5px 0px 0px;">
+                                          <p style="font-size:13px; color:#747c83; font-family:arial; margin:0px; padding:0px;">$messageInfo.phoneNumber</p>
+                                       </td>
+                                    </tr>
+                                    #end #if( $messageInfo.interactionType == 'chat' )
+                                    <tr>
+                                       <td style="padding:0px 0px 10px;">
+                                          <p style="font-size:13px; margin:0px; font-family:arial; padding:0px;">Contact Details</p>
+                                       </td>
+                                    </tr>
+                                    #if($messageInfo.clientContactID != "")
+                                    <tr>
+                                       <td style="padding:0px;">
+                                          <p style="margin:0px; padding:0px;"><a href="$messageInfo.cwaPath/web/contacts/$messageInfo.clientContactID" style="font-size: 13px;text-decoration: none; color: #279ed4; font-family:arial; padding:0px;">$messageInfo.accountName</a></p>
+                                       </td>
+                                    </tr>
+                                    #else $messageInfo.accountName #end
+                                    <tr>
+                                       <td style="padding:5px 0px 0px;">
+                                          <p style="font-size:13px; color:#747c83; font-family:arial; margin:0px; padding:0px;">$messageInfo.phoneNumber</p>
+                                       </td>
+                                    </tr>
+                                    #end
+                                 </table>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td style="padding:30px 0px 0px;">
+                                 <table cellspacing="0" cellpading="0" border="0" width="100%">
+                                    #if( $messageInfo.interactionType != 'chat' &&  $messageInfo.interactionType != 'lschat' && $messageInfo.previousCalls.isEmpty() != 'true' )
+                                    <tr>
+                                       <td>
+                                          <p style="font-size:13px; margin:0px; padding:0px; font-family:arial;">Previous Calls</p>
+                                       </td>
+                                    </tr>
+                                    #foreach( $key in $messageInfo.previousCalls.keySet() )
+                                    <tr>
+                                       <td style="padding:8px 0px 0px;">
+                                          <a href="$messageInfo.previousCalls.get($key)" style="font-size:13px; display:block; color:#279ed4; text-decoration:none; font-family:arial; padding:0px;"><img style="vertical-align:middle; margin: 0px 5px 0px 0px;" src="https://storage.googleapis.com/images.sb.a-cti.com/images/call.png" border="0" />$key</a>
+                                       </td>
+                                    </tr>
+                                    #end #end
+                                 </table>
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+               </table>
+            </td>
+         </tr>
+         <tr>
+            <td align="center">
+               #if($messageInfo.brandName == 'Answer Force')
+         <tr>
+            <td style="text-align:center; padding:30px 30px 0px 30px;">
+               <a href="https://play.google.com/store/apps/details?id=com.answerforce.mobile" style="padding:0px;" target="_blank"><img src="https://storage.googleapis.com/images.sb.a-cti.com/SB5/images/view-in-googleplay.png"></a>
+               <a href="https://itunes.apple.com/in/app/answerforce-answering-service/id875848962" target="_blank" style="margin:0px 22px; padding:0px;"><img src="https://storage.googleapis.com/images.sb.a-cti.com/SB5/images/view-in-appstore.png"></a>
+               <a href="$messageInfo.cwaPath/web/messages/inbox/$historyId" target="_blank" style="padding:0px;"><img src="https://storage.googleapis.com/images.sb.a-cti.com/SB5/images/view-online.png"></a>
+            </td>
+         </tr>
+         #end
+         <tr>
+            #if($messageInfo.noBrandLogo == 'true') 
+            #elseif($messageInfo.brandName == 'Voicecurve')
+            <td align="center" style="padding:20px 0px 0px; text-align:center;">
+               <a target="_blank" style="padding:0px; display:block; color:#1193d6;text-decoration:none; color:#279ed4;" href="https://www.voicecurve.com"> <img src="https://storage.googleapis.com/images.sb.a-cti.com/images/voicecurve.jpg" /></a>
+            </td>
+            #elseif($messageInfo.brandName == 'LexReception')
+            <td align="center" style="padding:20px 0px 0px; text-align:center;">
+               <a target="_blank" style="padding:0px; display:block; color:#1193d6;text-decoration:none; color:#279ed4;" href="https://www.lexreception.com"> <img src="https://storage.googleapis.com/images.sb.a-cti.com/images/lex_logo_footer.png" /></a>
+            </td>
+            #elseif($messageInfo.brandName == 'Answer Force')
+            <td align="center" style="padding:20px 0px 0px; text-align:center;">
+               <a target="_blank" style="padding:0px; display:block; color:#1193d6;text-decoration:none; color:#279ed4;" href="https://www.answerforce.com"> <img src="https://storage.googleapis.com/images.sb.a-cti.com/images/ansf_logo_footer.png" /></a>
+            </td>
+            #elseif($messageInfo.brandName == 'Synclio')
+            <td align="center" style="padding:20px 0px 0px; text-align:center;">
+               <a target="_blank" style="padding:padding:0px; display:block; color:#1193d6;text-decoration:none; color:#279ed4;" href="https://www.synclio.com"> <img src="https://storage.googleapis.com/images.sb.a-cti.com/images/synclio_logo.png" /></a>
+            </td>
+            #elseif($brandName == 'HelloSells')
+            <td align="center" style="padding:20px 0px 0px; text-align:center;">
+               <a target="_blank" style="padding:padding:0px; display:block; color:#1193d6;text-decoration:none; color:#279ed4;" href="https://www.hellosells.com"> <img src="https://storage.googleapis.com/images.sb.a-cti.com/images/hellosells.png" /></a>
+            </td>
+            #elseif($brandName == 'AnswerConnect UK')
+            <td align="center" style="padding:20px 0px 0px; text-align:center;">
+               <a target="_blank" style="padding:0px; display:block; color:#1193d6;text-decoration:none; color:#279ed4;" href="https://www.answerconnect.co.uk"> <img src="https://storage.googleapis.com/images.sb.a-cti.com/images/logo_temp.png" /></a>
+            </td>
+            #elseif($brandName == 'AnswerForce UK')
+            <td align="center" style="padding:20px 0px 0px; text-align:center;">
+               <a target="_blank" style="padding:0px; display:block; color:#1193d6;text-decoration:none; color:#279ed4;" href="https://www.answerforce.co.uk"> <img src="https://storage.googleapis.com/images.sb.a-cti.com/images/ansf_logo_footer.png" /></a>
+            </td>
+            #elseif($brandName == 'SetMore')
+            <td align="center" style="padding:20px 0px 0px; text-align:center;">
+               <a target="_blank" style="padding:0px; display:block; color:#1193d6;text-decoration:none; color:#279ed4;" href="https://www.setmore.com"> <img src="https://storage.googleapis.com/images.sb.a-cti.com/images/setmore_logo_footer.png" /></a>
+            </td>
+            #elseif($messageInfo.brandName == 'FranForce')
+            <td align="center" style="padding:20px 0px 0px; text-align:center;">
+               <a target="_blank" style="padding:0px; display:block; color:#1193d6;text-decoration:none; color:#279ed4;" href="https://www.franforce.io"> <img src="https://storage.googleapis.com/images.sb.a-cti.com/images/fnfc_logo_footer.png" /></a>
+            </td>
+            #else
+            <td align="center" style="padding:20px 0px 0px; text-align:center;">
+               <a target="_blank" style="padding:0px; display:block; color:#1193d6;text-decoration:none; color:#279ed4;" href="https://www.answerconnect.com"> <img src="https://storage.googleapis.com/images.sb.a-cti.com/images/logo_temp.png" /></a>
+            </td>
+            #end
+         </tr>
+         </td>
+         </tr>
+      </table>
+      #end
+   </body>
+</html>
